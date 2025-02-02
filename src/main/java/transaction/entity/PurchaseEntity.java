@@ -1,21 +1,27 @@
 package transaction.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+@Table(name = "purchases")
 @Data
+@AllArgsConstructor
 @Builder
 @Entity
-public class Purchase {
+public class PurchaseEntity {
     @Id
     private String id;
+
     @Column(length = 50)
     private String description;
+
     private LocalDate transactionDate;
+
     @Column(precision = 10, scale = 2)
     private BigDecimal amount;
 }
