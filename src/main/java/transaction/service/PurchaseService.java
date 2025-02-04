@@ -9,15 +9,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class PurchaseService {
     private final PurchaseRepository purchaseRepository;
+
+    public PurchaseService(PurchaseRepository purchaseRepository) {
+        this.purchaseRepository = purchaseRepository;
+    }
 
     public PurchaseEntity save(PurchaseEntity purchaseEntity) {
         return purchaseRepository.save(purchaseEntity);
     }
 
-    public List<PurchaseEntity> getPurchase(String id, String transactionDate) {
+    public List<PurchaseEntity> getPurchases(String id, String transactionDate) {
         return new ArrayList<>();
     }
 }

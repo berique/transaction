@@ -10,8 +10,8 @@ import java.time.format.DateTimeFormatter;
 public class PurchaseConverter {
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-    public static PurchaseDTO toDto(PurchaseEntity purchaseEntity) {
-        return PurchaseDTO.builder() //
+    public static PurchaseDTO toDTO(PurchaseEntity purchaseEntity) {
+        return PurchaseDTO.Builder.builder() //
                 .id(purchaseEntity.getId()) //
                 .transactionDate(purchaseEntity.getTransactionDate().format(formatter)) //
                 .amount(purchaseEntity.getAmount().toString()) //
@@ -20,10 +20,14 @@ public class PurchaseConverter {
     }
 
     public static PurchaseEntity toEntity(PurchaseDTO purchaseDTO) {
-        return PurchaseEntity.builder() //
+        return PurchaseEntity.Builder.builder() //
                 .id(purchaseDTO.getId()) //
                 .transactionDate(LocalDate.parse(purchaseDTO.getTransactionDate(), formatter)) //
-                .amount(new BigDecimal(purchaseDTO.getAmount())) //
+                .amount( //
+                        new BigDecimal( //
+                                purchaseDTO.getAmount() //
+                        ).setScale(2) //
+                ) //
                 .description(purchaseDTO.getDescription()) //
                 .build();
     }
