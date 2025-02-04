@@ -15,4 +15,11 @@ public class RateExchangeGateway {
         return restTemplate.getForObject(url, RateExchange.class);
     }
 
+    public RateExchange rateExchangeLess(String recordDate, String currency) {
+        String baseUrl = "https://api.fiscaldata.treasury.gov";
+        String path = "/services/api/fiscal_service/v1/accounting/od/rates_of_exchange";
+        String url = baseUrl + path + "?filter=record_date:lt:" + recordDate + ",currency:eq:" + currency;
+        return restTemplate.getForObject(url, RateExchange.class);
+    }
+
 }

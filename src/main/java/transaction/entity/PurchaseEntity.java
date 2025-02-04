@@ -1,9 +1,6 @@
 package transaction.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -23,6 +20,10 @@ public class PurchaseEntity {
 
     @Column(precision = 10, scale = 2)
     private BigDecimal amount;
+
+    public PurchaseEntity() {
+
+    }
 
     private PurchaseEntity(Builder builder) {
         setId(builder.id);

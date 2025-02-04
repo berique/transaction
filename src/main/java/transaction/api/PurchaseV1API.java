@@ -1,7 +1,7 @@
 package transaction.api;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import transaction.converter.PurchaseConverter;
 import transaction.dto.PurchaseDTO;
 import transaction.service.PurchaseService;
 
@@ -15,13 +15,14 @@ public class PurchaseV1API {
 
     @GetMapping("/{id}/{transactionDate}")
     public PurchaseDTO getPurchase(@PathVariable("id") String id, @PathVariable("transactionDate") String transactionDate) {
-        // TODO: Retrieve
-        return null;
+        return purchaseService.getPurchase(id, transactionDate);
     }
 
     @PostMapping
     public PurchaseDTO putPurchase(@RequestBody PurchaseDTO purchaseDTO) {
-        // TODO: Store
-        return null;
+        if ( purchaseDTO.getId() != null ) {
+            throw new IllegalArgumentException("ID must be null");
+        }
+        return PurchaseConverter.toDTO(purchaseService.save(PurchaseConverter.toEntity(purchaseDTO)));
     }
 }

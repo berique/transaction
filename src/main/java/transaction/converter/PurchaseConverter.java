@@ -8,12 +8,12 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class PurchaseConverter {
-    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     public static PurchaseDTO toDTO(PurchaseEntity purchaseEntity) {
         return PurchaseDTO.Builder.builder() //
                 .id(purchaseEntity.getId()) //
-                .transactionDate(purchaseEntity.getTransactionDate().format(formatter)) //
+                .transactionDate(purchaseEntity.getTransactionDate().format(DATE_TIME_FORMATTER)) //
                 .amount(purchaseEntity.getAmount().toString()) //
                 .description(purchaseEntity.getDescription()) //
                 .build();
@@ -22,7 +22,7 @@ public class PurchaseConverter {
     public static PurchaseEntity toEntity(PurchaseDTO purchaseDTO) {
         return PurchaseEntity.Builder.builder() //
                 .id(purchaseDTO.getId()) //
-                .transactionDate(LocalDate.parse(purchaseDTO.getTransactionDate(), formatter)) //
+                .transactionDate(LocalDate.parse(purchaseDTO.getTransactionDate(), DATE_TIME_FORMATTER)) //
                 .amount( //
                         new BigDecimal( //
                                 purchaseDTO.getAmount() //
