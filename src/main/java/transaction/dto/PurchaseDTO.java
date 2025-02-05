@@ -2,6 +2,7 @@ package transaction.dto;
 
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
+import lombok.NonNull;
 import org.hibernate.validator.constraints.Length;
 
 @Data
@@ -16,6 +17,10 @@ public class PurchaseDTO {
 
     @Pattern(regexp = "[0-9]{1,10}?(\\.[0-9]{1,2})")
     private String amount;
+
+    public PurchaseDTO() {
+
+    }
 
     public String getId() {
         return id;

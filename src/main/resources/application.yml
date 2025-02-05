@@ -7,8 +7,3 @@ spring:
     driverClassName: org.h2.Driver
     username: sa
     password:
-  openfeign:
-    client:
-      config:
-        testClient:
-          url:

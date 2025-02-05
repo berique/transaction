@@ -5,7 +5,8 @@ import transaction.converter.PurchaseConverter;
 import transaction.dto.PurchaseDTO;
 import transaction.service.PurchaseService;
 
-@RestController("/v1/purchase")
+@RestController
+@RequestMapping("/api/v1/purchase")
 public class PurchaseV1API {
     private final PurchaseService purchaseService;
 
@@ -20,7 +21,7 @@ public class PurchaseV1API {
 
     @PostMapping
     public PurchaseDTO putPurchase(@RequestBody PurchaseDTO purchaseDTO) {
-        if ( purchaseDTO.getId() != null ) {
+        if (purchaseDTO.getId() != null) {
             throw new IllegalArgumentException("ID must be null");
         }
         return PurchaseConverter.toDTO(purchaseService.save(PurchaseConverter.toEntity(purchaseDTO)));
